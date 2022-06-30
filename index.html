@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Webix Location Viewer</title>
+		<meta charset="utf-8">
+
+		<!-- Webix sources -->
+		<script type="text/javascript" src="https://cdn.webix.com/edge/webix.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.webix.com/edge/webix.css">
+
+		<!-- OpenStreetMap sources -->
+		<script type="text/javascript" src="//cdn.webix.com/components/edge/openmap/openmap.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+			const central_point = [ 48.679314021314354, 22.274143952644422 ];
+
+			webix.ui({
+				cols: [
+					{
+						padding: 5, width: 250, type: "clean",
+						rows: [ 
+							{ id: "show_all_locations", view: "button", label: "Show all locations", css: "webix_primary" },
+							{ id: "clear_all_locations", view: "button", label: "Clear all locations" },
+							{
+								view: "list",
+								id: "list_id",
+								template: "#name#, #position#",
+								select: true,
+								borderless: true,
+								url: "./data/list_data.json"
+							}
+						]
+					},
+					{
+						view: "open-map",
+						id: "map", 
+						zoom: 5,
+						center: central_point
+					}
+				]
+			});	
+
+			$$("map").getMap(true).then(map => {
+				const list = $$("list_id");
+
+				// handle the click on the list item
+				list.attachEvent("onItemClick", function(id){
+					const item = list.getItem(id);
+					if(item.marker){
+						showPopup(item, item.marker);
+					} else {
+						item.marker = L.marker(item.coordinates).addTo(map);
+						item.marker.on('click', function(ev) {
+							showPopup(item, ev.target);
+							list.select(item.id);
+						});
+						showPopup(item, item.marker);
+					}
+				});	
+
+				// handle the click on the "Clear all locations" button
+				$$("clear_all_locations").attachEvent("onItemClick", function(){
+					list.unselectAll();
+					list.data.each(function(obj){
+						if(obj.marker){
+							obj.marker.remove(); 
+							obj.marker = null; 
+						}
+					});
+					map.setView(central_point);
+				});
+
+				// handle the click on the "Show all locations" button
+				$$("show_all_locations").attachEvent("onItemClick", function(){
+					list.unselectAll();
+					list.data.each(function(obj){
+						if(!obj.marker){
+							obj.marker = L.marker(obj.coordinates).addTo(map);  
+							obj.marker.on('click', function(ev) {
+								showPopup(obj, ev.target);
+								list.select(obj.id);
+							});
+						}
+					});
+					map.setView(central_point);
+				});
+
+				// show and hide popup message
+				function showPopup(item, marker) {
+					const time = new Date().toLocaleString("en-GB", { 
+						timeZone: item.time_zone, 
+						dateStyle: "short", 
+						timeStyle: "short"
+					});
+					
+					if(marker.isPopupOpen()){
+						marker.closePopup().unbindPopup();
+						clearTimeout(item.popup_timer);
+						item.popup_timer = null;
+					} 
+
+					marker.bindPopup(
+						`<b>Name: </b>${item.name}<br>
+						 <b>Position: </b>${item.position}<br>
+						 <b>Location: </b>${item.location}<br>
+						 <b>Local time: </b>${time}`,
+						{ closeButton: false, closeOnClick: false }
+					).openPopup();
+
+					item.popup_timer = setTimeout(function(){
+						marker.closePopup().unbindPopup();
+					}, 3000);
+
+					list.updateItem(item.id, item);
+					map.setView(item.coordinates);
+				}
+			});
+		</script>
+	</body>
+</html>

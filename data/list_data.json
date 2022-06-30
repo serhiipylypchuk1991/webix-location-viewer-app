@@ -1,0 +1,14 @@
+[
+	{ "id":1, "name":"Serhii", "position": "Technical writer", "location": "Batumi (Georgia)", "coordinates": [41.65160225654716, 41.64112115917187], "marker": null, "popup_timer": null, "time_zone": "Asia/Tbilisi" }, 
+	{ "id":2, "name":"Anton", "position": "Web developer", "location": "Warsaw (Poland)", "coordinates": [52.33470520827621, 21.028045269220506], "marker": null, "popup_timer": null, "time_zone": "Europe/Warsaw" },
+	{ "id":3, "name":"Nastassia", "position": "Web developer", "location": "Gothenburg (Sweden)", "coordinates": [57.74522897397162, 11.988324957110358], "marker": null, "popup_timer": null, "time_zone": "Europe/Stockholm" }, 
+	{ "id":4, "name":"Kate", "position": "Marketing specialist", "location": "Krakow (Poland)", "coordinates": [50.07974036022477, 19.897748932545337], "marker": null, "popup_timer": null, "time_zone": "Europe/Warsaw" }, 
+	{ "id":5, "name":"Hanna", "position": "UX designer", "location": "Istanbul (Turkey)", "coordinates": [41.108734245362434, 28.706038013290176], "marker": null, "popup_timer": null, "time_zone": "Europe/Istanbul" }, 
+	{ "id":6, "name":"Alex", "position": "Web developer", "location": "Amsterdam (Netherlands)", "coordinates": [52.53325784546919, 4.799789407127288], "marker": null, "popup_timer": null, "time_zone": "Europe/Amsterdam" }, 
+	{ "id":7, "name":"Julia", "position": "Custom care specialist", "location": "Belgrad (Serbia)", "coordinates": [44.7744173202718, 20.532209712964764], "marker": null, "popup_timer": null, "time_zone": "Europe/Belgrade" }, 
+	{ "id":8, "name":"Michael", "position": "Web developer", "location": "London (United Kingdom)", "coordinates": [51.5689162826283, -0.23170595011366452], "marker": null, "popup_timer": null, "time_zone": "Europe/London" }, 
+	{ "id":9, "name":"Helga", "position": "Support specialist","location": "Munich (Germany)", "coordinates": [48.34525925693279, 11.322101517630712], "marker": null, "popup_timer": null, "time_zone": "Europe/Berlin" }, 
+	{ "id":10, "name":"Nataliya", "position": "Marketing specialist", "location": "Prague (Czech Republic)", "coordinates": [50.28255861399953, 14.442218031667304], "marker": null, "popup_timer": null, "time_zone": "Europe/Prague" }, 
+	{ "id":11, "name":"Victoria", "position": "Account manager", "location": "Salzburg (Austria)", "coordinates": [47.872395068614644, 13.398517094290082], "marker": null, "popup_timer": null, "time_zone": "Europe/Berlin" },
+	{ "id":12, "name":"Andrey", "position": "Web developer", "location": "Vilnius (Lithuania)", "coordinates": [54.71923080793151, 25.263858773386737], "marker": null, "popup_timer": null, "time_zone": "Europe/Vilnius" }
+]
